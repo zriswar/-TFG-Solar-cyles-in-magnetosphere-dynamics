@@ -25,7 +25,7 @@ windowdic = pickle.load(open('DATA/windowdata', 'rb'))
 R_max = windowdic['R_hi']
 R_max1 = R_max[1]
 
-Dst_max = windowdic['Dst_hi']
+Dst_max = windowdic['AE_hi']
 Dst_max1 = Dst_max[1]
 
 Rarray = np.array(R_max1).flatten()

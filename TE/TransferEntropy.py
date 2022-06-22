@@ -113,7 +113,7 @@ def joint_prob_ih_ik(k,l, joint_prob_ih_ik_jl):
 
 
 
-# In[5]:
+# In[5]:s
 
 
 def conditional_prob(k,l,joint_prob):
@@ -177,13 +177,16 @@ def te(k,l,h,a,b):
     te = np.sum(joint_p_ih_ik_jl[div!=0]*log2_div_cond)
     return te
 
+# Cálculo de TE y guardado de datos en el diccionario tedic
+''''''
 windowdic = pickle.load(open('DATA/windowdata', 'rb'))
+tedic = pickle.load(open('DATA/tedic', 'rb'))
 
-for j in range(1, 6):
+for j in [1, 2, 4, 5]:
     R_max = windowdic['R_hi']
     R_max1 = R_max[j]
 
-    Dst_max = windowdic['v_hi']
+    Dst_max = windowdic['AE_hi']
     Dst_max1 = Dst_max[j]
 
     Rarray = np.array(R_max1).flatten()
@@ -215,10 +218,10 @@ for j in range(1, 6):
     print(te_dst_sp)
     print(j)
 
-    tedic = pickle.load(open('DATA/tedic', 'rb'))
 
-    tedic[f'te_sp_v{j}'] = te_sp_dst
-    tedic[f'te_v_sp{j}'] = te_dst_sp
+
+    tedic[f'te_sp_ae_{j}'] = te_sp_dst
+    tedic[f'te_ae_sp_{j}'] = te_dst_sp
 
     pickle.dump(tedic, open('DATA/tedic', 'wb'))
 
